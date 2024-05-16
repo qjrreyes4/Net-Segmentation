@@ -4,7 +4,7 @@
   vars:
     admin_ip: 192.168.56.104
     users_network: 192.168.56.103
-    printer_ip: 192.168.56.105
+    printer_ip: 192.168.56.108
   
 - hosts: admin
   become: true
