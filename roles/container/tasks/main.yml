@@ -1,25 +1,32 @@
 ---
-  - name: Deploy admin container
-    docker_container:
-      name: admin
-      image: admin-image
-      networks:
-        - name: admin
-      state: started
+- name: Create Docker network
+  community.docker.docker_network:
+    name: "{{ users_network }}"
+    state: present
 
-  - name: Deploy users containers
-    docker_container:
-      name: "user-{{ item }}"
-      image: user-image
-      networks:
-        - name: users
-      state: started
-    loop: "{{ range(1, 11)|list }}"
+- name: Deploy admin container
+  community.docker.docker_container:
+    name: admin
+    image: admin-image:latest
+    networks:
+      - name: "{{ users_network }}"
+    restart_policy: always
+    state: started
 
-  - name: Deploy printer container
-    docker_container:
-      name: printer
-      image: printer-image
-      networks:
-        - name: printer
-      state: started
+- name: Deploy device container
+  community.docker.docker_container:
+    name: user
+    image: user-image:latest
+    networks:
+      - name: "{{ users_network }}"
+    restart_policy: always
+    state: started
+
+- name: Deploy printer container
+  community.docker.docker_container:
+    name: printer
+    image: printer-image:latest
+    networks:
+      - name: "{{ users_network }}"
+    restart_policy: always
+    state: started
