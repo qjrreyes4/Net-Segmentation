@@ -1,18 +1,18 @@
 ---
-  - name: Deploy manage node container
+  - name: Deploy admin container
     docker_container:
-      name: manage-node
-      image: manage-node-image
+      name: admin
+      image: admin-image
       networks:
-        - name: manage_node
+        - name: admin
       state: started
 
-  - name: Deploy devices containers
+  - name: Deploy users containers
     docker_container:
-      name: "device-{{ item }}"
-      image: device-image
+      name: "user-{{ item }}"
+      image: user-image
       networks:
-        - name: devices
+        - name: users
       state: started
     loop: "{{ range(1, 11)|list }}"
 
