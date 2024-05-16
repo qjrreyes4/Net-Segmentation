@@ -7,6 +7,15 @@
     destination: "{{ users_network }}"
     jump: ACCEPT
 
+- name: Allow printer access from manage node
+  iptables:
+    state: present
+    chain: FORWARD
+    protocol: tcp
+    source: "{{ admin_ip }}"
+    destination: "{{ printer_ip }}"
+    jump: ACCEPT
+
 - name: Block all other traffic
   iptables:
     state: present
