@@ -1,0 +1,25 @@
+---
+  - name: Deploy manage node container
+    docker_container:
+      name: manage-node
+      image: manage-node-image
+      networks:
+        - name: manage_node
+      state: started
+
+  - name: Deploy devices containers
+    docker_container:
+      name: "device-{{ item }}"
+      image: device-image
+      networks:
+        - name: devices
+      state: started
+    loop: "{{ range(1, 11)|list }}"
+
+  - name: Deploy printer container
+    docker_container:
+    name: printer
+      image: printer-image
+      networks:
+        - name: printer
+      state: started
