@@ -1,7 +1,10 @@
 ---
 - hosts: all
   become: true
- 
+  vars:
+    admin_ip: 192.168.1.0
+    users_network: 192.168.2.0/24
+  
 - hosts: admin
   become: true
   roles:
