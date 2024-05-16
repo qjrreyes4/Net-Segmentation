@@ -1,15 +1,14 @@
----
-  - name: Configure firewall rules
-    iptables:
-      state: present
-      chain: FORWARD
-      protocol: tcp
-      source: "{{ admin_ip }}"
-      destination: "{{ users_network }}"
-      jump: ACCEPT
+- name: Configure firewall rules
+  iptables:
+    state: present
+    chain: FORWARD
+    protocol: tcp
+    source: "{{ admin_ip }}"
+    destination: "{{ users_network }}"
+    jump: ACCEPT
 
-  - name: Block all other traffic
-    iptables:
-      state: present
-      chain: FORWARD
-      jump: DROP
+- name: Block all other traffic
+  iptables:
+    state: present
+    chain: FORWARD
+    jump: DROP
