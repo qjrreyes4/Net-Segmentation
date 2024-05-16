@@ -7,7 +7,7 @@
     destination: "{{ users_network }}"
     jump: ACCEPT
 
-- name: Allow printer access from manage node
+- name: Allow printer access from admin
   iptables:
     state: present
     chain: FORWARD
