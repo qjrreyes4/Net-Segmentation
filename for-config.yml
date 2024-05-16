@@ -2,9 +2,9 @@
 - hosts: all
   become: true
   vars:
-    admin_ip: 192.168.1.100
-    users_network: 192.168.2.0/24
-    printer_ip: 192.168.10.100
+    admin_ip: 192.168.56.104
+    users_network: 192.168.56.103
+    printer_ip: 192.168.56.105
   
 - hosts: admin
   become: true
