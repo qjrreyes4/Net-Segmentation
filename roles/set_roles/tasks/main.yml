@@ -1,0 +1,19 @@
+- name: Add admin group
+  group:
+    name: admin
+    state: present
+
+- name: Add local user
+  user:
+    name: admin
+    group: admin
+    shell: /bin/bash
+    home: /home/admin
+    create_home: yes
+    state: present
+
+- name: Add sudoer rule for the admin
+  lineinfile:
+    path: /etc/sudoers
+    line: "admin    ALL=(ALL:ALL) ALL"
+    validate: 'visudo -cf %s'
