@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: true
+ 
+- hosts: admin
+  become: true
+  roles:
+      - docker
+
+- hosts: users
+  become: true
+  roles:
+      - container
+      - firewall
