@@ -15,11 +15,3 @@
         - name: users
       state: started
     loop: "{{ range(1, 11)|list }}"
-
-  - name: Deploy printer container
-    docker_container:
-    name: printer
-      image: printer-image
-      networks:
-        - name: printer
-      state: started
